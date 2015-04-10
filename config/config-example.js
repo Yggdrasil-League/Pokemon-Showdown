@@ -156,9 +156,7 @@ exports.herokuhack = false;
 //
 // Your server *must* be registered in order for your custom avatars to be
 // displayed in the client.
-exports.customavatars = {
-	//'userid': 'customavatar.png'
-};
+exports.customavatars = JSON.parse(require('fs').readFileSync('storage-files/customavatars.json'));
 
 // Tournament announcements
 // When tournaments are created in rooms listed below, they will be announced in
