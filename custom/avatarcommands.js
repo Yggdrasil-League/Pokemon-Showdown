@@ -29,7 +29,7 @@ exports.commands = {
 			avatarlist[user.userid] = user.userid + '.' + format;
 			fs.writeFile('storage-files/customavatars.json', JSON.stringify(avatarlist));
 			user.avatar = avatarlist[user.userid];
-			self.sendReply('|html|Your new avatar has been set to-<br/><img src = "' + target + '" width = 80 height = 80>');
+			self.sendReply('|html|Your new avatar has been set to-<br/><img src = "' + target + '" width = 80 height = 80>'); // Does it not need to be target.avatar?
 			response.pipe(fs.createWriteStream('config/avatars/' + user.userid + '.' + format));
 		});
 	},
