@@ -3,6 +3,10 @@ var gymleaderlist = JSON.parse(fs.readFileSync('storage-files/gymleaders.json'))
 
 exports.commands = {
 
+/***********************
+	Set Gym Leader
+***********************/
+
 	sgl: 'setgymleader',
 	setgymleader: function (target, room, user) {
 		if (!this.can('makeroom')) return;
@@ -15,6 +19,10 @@ exports.commands = {
 		fs.writeFile('storage-files/gymleaders.json', JSON.stringify(gymleaderlist));
 		return;
 	},
+
+/***********************
+	View Gym Leader
+***********************/
 
 	vgl: 'viewgymleaders',
 	viewgymleaders: function (name, target, user) {
