@@ -1,4 +1,4 @@
-var lastseen = JSON.parse(fs.readFileSync('infofiles/lastseen.json'));
+var lastseen = JSON.parse(fs.readFileSync('storage-files/lastseen.json'));
 var dates = exports.dates = {
 
 	setdate: function (name) {
