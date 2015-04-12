@@ -190,8 +190,12 @@ var commands = exports.commands = {
 
 	unaway: 'back',
 	back: function () {
+		if (!user.blockChallenges) return this.sendReply("You are already available for challnges!");
 		this.parse('/unblockpms');
 		this.parse('/unblockchallenges');
+		var name = user.name.substring(0, user.name.length - user.awayName.length);
+		user.forceRename(name, undefined, true);
+		this.add("|html|<b>- <font color = #007bFF>" + user.name + "</font></b> is back.");
 	},
 
 	makechatroom: function (target, room, user) {
