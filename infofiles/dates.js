@@ -1,5 +1,5 @@
 var lastseen = JSON.parse(fs.readFileSync('infofiles/lastseen.json'));
-var datestuff = exports.datestuff = {
+var dates = exports.dates = {
 
 	setdate: function (name) {
 		lastseen[name] = Date.now();
