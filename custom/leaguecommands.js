@@ -25,20 +25,14 @@ exports.commands = {
 ***********************/
 
 	vgl: 'viewgymleaders',
-	viewgymleaders: function (name, target, user) {
+	viewgymleaders: function (target, room, user) {
 		if (!this.canBroadcast()) return;
 		var glList = '<center><table><tr><td><b>Type</b></td><td><b>Gym Leader<b></td><td><b>Last Seen</b></td></tr><br/>';
-		for (gl in gymleaderlist) {
-			var lastSeen = this.lastSeen(toId(a[gl]));
-			var targetsArray = lastSeen.split(',');
-			lastSeen = targetsArray[0] + ' ago';
-			if (Users.get(toId(gymleaderlist[gl]))) {
-				if (Users.get(toId(gymleaderlist[gl])).connected) {
-					var lastSeen = '<font color = "green"> online.</font>';
-				}
-			}
-			// Need to find a better way to fetch Type icons.
-			glList += '<tr><td>' + '<img src="http://yggdrasilleague.no-ip.org:25565/avatars/Types/' + gl.toString() + '.png">' + '</td>' + '<td>' + gymleaderlist[gl] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
+		for (type in gymleaderlist) {
+			var lastSeen = dates.lastSeen(toId(gymleadrlist[type])) + ' ago';
+			if (Users.get(gymleaderlist[type]) && Users.get(toId(gymleaderlist[type])).connected) 
+				lastSeen = '<font color = "green"> online.</font>';
+			glList += '<tr><td>' + '<img src="http://yggdrasilleague.no-ip.org:25565/storage-files/Types/' + type + '.png">' + '</td>' + '<td>' + gymleaderlist[type] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
 		}
 		this.sendReplyBox(glList + '</table>');
 	}
