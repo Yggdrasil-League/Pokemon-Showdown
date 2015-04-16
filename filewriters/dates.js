@@ -33,7 +33,7 @@ var dates = exports.dates = {
 				return target1;
 			}
 		}
-		var lastseen = datestuff.getdate(toId(target));
+		var lastseen = dates.getdate(toId(target));
 		if (lastseen == 'never') return 'never';
 		var part1 = Math.floor(lastseen / 1000);
 		var time1 = Math.floor(lastseen / 1000) + ' ' + plural(part1, 'second');
