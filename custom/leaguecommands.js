@@ -15,6 +15,7 @@ exports.commands = {
 		var target0 = targetsArray[0];
 		var target1 = targetsArray[1];
 		var target2 = targetsArray[2];
+		if(target1 != 'Fairy' && target1 != 'Bug' && target1 != 'Dragon' && target1 != 'Psychic' && target1 != 'Water' && target1 != 'Fire' && target1 != 'Grass' && target1 != 'Ground' && target1 != 'Rock' && target1 != 'Dark' && target1 != 'Ice' && target1 != 'Electric' && target1 != 'Flying' && target1 != 'Normal' && target1 != 'Poison' && target1 != 'Ghost' && target1 != 'Steel' && target1 != 'Fighting') return this.sendReply ('Please select a valid type using capitalisation');
 		if (path.existsSync(target0 + 'gymleaders.json')) { 
 			var gymleaderlist = JSON.parse(fs.readFileSync('storage-files/'+target0+'gymleaders.json'));
 			gymleaderlist[target0] = target2;
