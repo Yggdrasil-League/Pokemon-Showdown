@@ -21,9 +21,10 @@ exports.commands = {
 			gymleaderlist[target1] = target2;
   			fs.writeFile('storage-files/'+target0+'gymleaders.json', JSON.stringify(gymleaderlist));
 		}else{
+			fs.writeFile('storage-files/'++target0+'gymleaders.json', '{}');
 			var gymleaderlist = JSON.parse(fs.readFileSync('storage-files/'+target0+'gymleaders.json'));
 			gymleaderlist[target1] = target2;
-			fs.writeFile('storage-files/'+target0+'gymleaders.json','{'+JSON.stringify(gymleaderlist)+'}');
+			fs.writeFile('storage-files/'+target0+'gymleaders.json',JSON.stringify(gymleaderlist));
 		}
 		this.sendReply(target2 + ' has now been set as ' + target1 + ' Gym Leader for ' + target0 + '.');
 		
