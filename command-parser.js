@@ -50,7 +50,7 @@ fs.readdirSync('./chat-plugins').forEach(function (file) {
 });
 
 fs.readdirSync('./custom').forEach(function (file) {
-	if (file.substr(-3) === '.js') Object.merge(commands, require('./chat-plugins/' + file).commands);
+	if (file.substr(-3) === '.js') Object.merge(commands, require('./custom/' + file).commands);
 });
 
 /*********************************************************
