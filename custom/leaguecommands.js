@@ -37,7 +37,7 @@ exports.commands = {
 		if (path.existsSync(target + 'gymleaders.json')) { 
   			var gymleaderlist = JSON.parse(fs.readFileSync('storage-files/'+target+'gymleaders.json'));
 		}else{
-			return this.sendReply ('League doesn't exist or hasn't set up a Gym Leader list.');
+			return this.sendReply ('League doesn\'t exist or hasn\'t set up a Gym Leader list.');
 		}
 		
 		var glList = '<center><table><tr><td><b>Type</b></td><td><b>Gym Leader<b></td><td><b>Last Seen</b></td></tr><br/>';
