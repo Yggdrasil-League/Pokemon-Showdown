@@ -1,5 +1,6 @@
 var uninstalled = false;
 var fs = require('fs');
+var http = require('http');
 var request;
 var fileExists = true;
 try {
@@ -15,7 +16,7 @@ exports.commands = {
 		if (!toId(target)) return this.sendReply('/setavatar URL - Sets a custom avatar.');
 		if (uninstalled) return this.sendReply("|html|You must have the node.js 'request' module installed to use this command. Run <code>npm install request</code> in your command prompt to install it. You'd first need to shut down the server, though.");
 		if (!this.can('hotpatch')) return false;
-		var formatList = ['png', 'jpg', 'gif', 'jpeg', 'bmp'];
+		var formatList = ['png', 'jpg', 'gif', 'bmp'];
 		var format = target.substr(-3);
 		if (formatList.indexOf(format) === -1) return this.sendReply('The format of your avatar is not supported. The allowed formats are ' + formatList.join(', ') + '.');
 		if (target.indexOf('https://') === 0) target = 'http://' + target.substr(8);
@@ -29,15 +30,17 @@ exports.commands = {
 			avatarlist[user.userid] = user.userid + '.' + format;
 			fs.writeFile('storage-files/customavatars.json', JSON.stringify(avatarlist));
 			user.avatar = avatarlist[user.userid];
-			self.sendReply('|html|Your new avatar has been set to-<br/><img src = "' + target + '" width = 80 height = 80>');
-			response.pipe(fs.createWriteStream('config/avatars/' + user.userid + '.' + format));
-		});
-	},
+			var file = fs.createWriteStream('config/avatars/' + user.userid + '.' + format);
+			response.pipe(file);
+			file.on('finish', function () {
+                self.sendReply('|html|Your new avatar has been set to-<br/><img src = "' + target + '" width = 80 height = 80>');
+            });
+	})},
 
 	removeavatar: function (target, room, user, connection, cmd) {
 		if (typeof user.avatar === 'Number') return this.sendReply('You do not own a custom avatar.');
 		if (toId(target) !== 'confirm')
-			this.sendReply('WARNING: If you choose to delete your avatar now, it cannot be recovered later. If you\'re sure you want to do this, enter \'/removeavatar confirm.\'');
+			return this.sendReply('WARNING: If you choose to delete your avatar now, it cannot be recovered later. If you\'re sure you want to do this, enter \'/removeavatar confirm.\'');
 		delete avatarlist[user.userid];
 		fs.unlink('config/avatars/' + user.avatar);
 		user.avatar = 1;
