@@ -49,7 +49,7 @@ exports.commands = {
 			var lastSeen = dates.lastSeen(toId(gymleadrlist[type])).split(",")[0] + ' ago';
 			if (Users.get(gymleaderlist[type]) && Users.get(toId(gymleaderlist[type])).connected) 
 				lastSeen = '<font color = "green"> online.</font>';
-			glList += '<tr><td>' + '<img src="http://yggdrasilleague.no-ip.org:8000/storage-files/Types/' + type + '.png">' + '</td>' + '<td>' + gymleaderlist[type] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
+			glList += '<tr><td>' + '<img src="http://yggdrasilleague.no-ip.org:8000/config/Avatars/Types/' + type + '.png">' + '</td>' + '<td>' + gymleaderlist[type] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
 		}
 		this.sendReplyBox(glList + '</table>');
 	}
