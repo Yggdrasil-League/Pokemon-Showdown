@@ -18,7 +18,7 @@ exports.commands = {
 		target0 = toId(target0);
 		target1 = toId(target1);
 		target1 = target1.charAt(0).toUpperCase() + target1.slice(1).toLowerCase();
-		if(target1 != 'Fairy' && target1 != 'Bug' && target1 != 'Dragon' && target1 != 'Psychic' && target1 != 'Water' && target1 != 'Fire' && target1 != 'Grass' && target1 != 'Ground' && target1 != 'Rock' && target1 != 'Dark' && target1 != 'Ice' && target1 != 'Electric' && target1 != 'Flying' && target1 != 'Normal' && target1 != 'Poison' && target1 != 'Ghost' && target1 != 'Steel' && target1 != 'Fighting') return this.sendReply ('Please select a valid type using capitalisation');
+		if(target1 != 'Fairy' && target1 != 'Bug' && target1 != 'Dragon' && target1 != 'Psychic' && target1 != 'Water' && target1 != 'Fire' && target1 != 'Grass' && target1 != 'Ground' && target1 != 'Rock' && target1 != 'Dark' && target1 != 'Ice' && target1 != 'Electric' && target1 != 'Flying' && target1 != 'Normal' && target1 != 'Poison' && target1 != 'Ghost' && target1 != 'Steel' && target1 != 'Fighting') return this.sendReply ('Please select a valid type');
 		if (fs.existsSync('storage-files/'+target0+'gymleaders.json')) {
             		var gymleaderlist = JSON.parse(fs.readFileSync('storage-files/'+target0+'gymleaders.json'));
 			gymleaderlist[target1] = target2;
