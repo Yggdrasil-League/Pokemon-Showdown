@@ -28,6 +28,7 @@ var Core = exports.Core = {
 		if (subItem) {
 			if (file[item])
 		return file[item];
+		}
 	},
 	setDate: function (user) {
 		user = toId(user);
