@@ -13,7 +13,8 @@ exports.commands = {
 		if (!target) return this.sendReply('/setgymleader [league], [type], [user] - Adds user to GL list');
 		var targetsArray = target.split(',');
 		var target0 = toId(targetsArray[0]);
-		var target1 = toId(targetsArray[1]).charAt(0).toUpperCase() + target1.slice(1).toLowerCase();
+		var target1 = toId(targetsArray[1]);
+		target1 = target1.charAt(0).toUpperCase() + target1.slice(1).toLowerCase();
 		var target2 = targetsArray[2];
 		if(target1 != 'Fairy' && target1 != 'Bug' && target1 != 'Dragon' && target1 != 'Psychic' && target1 != 'Water' && target1 != 'Fire' && target1 != 'Grass' && target1 != 'Ground' && target1 != 'Rock' && target1 != 'Dark' && target1 != 'Ice' && target1 != 'Electric' && target1 != 'Flying' && target1 != 'Normal' && target1 != 'Poison' && target1 != 'Ghost' && target1 != 'Steel' && target1 != 'Fighting') return this.sendReply ('Please select a valid type');
 		if (fs.existsSync('storage-files/'+target0+'gymleaders.json')) {
