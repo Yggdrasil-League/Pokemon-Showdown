@@ -12,12 +12,9 @@ exports.commands = {
 		if (!this.can('makeroom')) return;
 		if (!target) return this.sendReply('/setgymleader [league], [type], [user] - Adds user to GL list');
 		var targetsArray = target.split(',');
-		var target0 = targetsArray[0];
-		var target1 = targetsArray[1];
+		var target0 = toId(targetsArray[0]);
+		var target1 = toId(targetsArray[1]).charAt(0).toUpperCase() + target1.slice(1).toLowerCase();
 		var target2 = targetsArray[2];
-		target0 = toId(target0);
-		target1 = toId(target1);
-		target1 = target1.charAt(0).toUpperCase() + target1.slice(1).toLowerCase();
 		if(target1 != 'Fairy' && target1 != 'Bug' && target1 != 'Dragon' && target1 != 'Psychic' && target1 != 'Water' && target1 != 'Fire' && target1 != 'Grass' && target1 != 'Ground' && target1 != 'Rock' && target1 != 'Dark' && target1 != 'Ice' && target1 != 'Electric' && target1 != 'Flying' && target1 != 'Normal' && target1 != 'Poison' && target1 != 'Ghost' && target1 != 'Steel' && target1 != 'Fighting') return this.sendReply ('Please select a valid type');
 		if (fs.existsSync('storage-files/'+target0+'gymleaders.json')) {
             		var gymleaderlist = JSON.parse(fs.readFileSync('storage-files/'+target0+'gymleaders.json'));
@@ -48,10 +45,8 @@ exports.commands = {
 		
 		var glList = '<center><table><tr><td><b>Type</b></td><td><b>Gym Leader<b></td><td><b>Last Seen</b></td></tr><br/>';
 		for (type in gymleaderlist) {
-			var lastSeen = dates.lastSeen(toId(gymleadrlist[type])).split(",")[0] + ' ago';
-			if (Users.get(gymleaderlist[type]) && Users.get(toId(gymleaderlist[type])).connected) 
-				lastSeen = '<font color = "green"> online.</font>';
-			glList += '<tr><td>' + '<img src="http://yggdrasilleague.no-ip.org:8000/config/Avatars/Types/' + type + '.png">' + '</td>' + '<td>' + gymleaderlist[type] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
+			var lastSeen = (Users.get(gymleaderlist[type]) && Users.get(toId(gymleaderlist[type])).connected) ? '<font color = "green"> online.</font>' : core.getLastSeen(toId(gymleadrlist[type])).split(",")[0] + ' ago';
+			glList += '<tr><td>' + '<img src="http://play.pokemonshowdown.com/sprites/types/' + type + '.png">' + '</td>' + '<td>' + gymleaderlist[type] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
 		}
 		this.sendReplyBox(glList + '</table>');
 	}
