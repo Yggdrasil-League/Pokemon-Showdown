@@ -45,7 +45,7 @@ exports.commands = {
 		
 		var glList = '<center><table><tr><td><b>Type</b></td><td><b>Gym Leader<b></td><td><b>Last Seen</b></td></tr><br/>';
 		for (type in gymleaderlist) {
-			var lastSeen = (Users.get(gymleaderlist[type]) && Users.get(toId(gymleaderlist[type])).connected) ? '<font color = "green"> online.</font>' : core.getLastSeen(toId(gymleadrlist[type])).split(",")[0] + ' ago';
+			var lastSeen = (Users.get(gymleaderlist[type]) && Users.get(toId(gymleaderlist[type])).connected) ? '<font color = "green"> online.</font>' : Core.getLastSeen(toId(gymleadrlist[type])).split(",")[0] + ' ago';
 			glList += '<tr><td>' + '<img src="http://play.pokemonshowdown.com/sprites/types/' + type + '.png">' + '</td>' + '<td>' + gymleaderlist[type] + ': ' + '</td>' + '<td>' + lastSeen + '</td>' + '</tr>';
 		}
 		this.sendReplyBox(glList + '</table>');

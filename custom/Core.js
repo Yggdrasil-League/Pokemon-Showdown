@@ -75,7 +75,7 @@ var Core = exports.Core = {
 
 //Extra edits
 Users.User.prototype.onDisconnect = function(connection) {
-        if (this.named) Core.write('storage-files/lastseen.json', this.userid, Date.now()); 
+        if (this.named) Core.write('storage-files/dates.json', this.userid, Date.now()); 
         for (var i = 0; i < this.connections.length; i++) {
             if (this.connections[i] === connection) {
                 // console.log('DISCONNECT: ' + this);
@@ -109,7 +109,7 @@ Users.User.prototype.onDisconnect = function(connection) {
     };
 	
 	Users.User.prototype.disconnectAll = function() {
-        if (this.named) Core.write('storage-files/lastseen.json', this.userid, Date.now()); 
+        if (this.named) Core.write('storage-files/dates.json', this.userid, Date.now()); 
         for (var roomid in this.mutedRooms) {
             clearTimeout(this.mutedRooms[roomid]);
             delete this.mutedRooms[roomid];
@@ -139,7 +139,7 @@ Users.User.prototype.onDisconnect = function(connection) {
     };
 
     Rooms.GlobalRoom.prototype.onRename = function(user, oldid, joining) {
-        if (user.named && toId(oldid) != toId(user)) Core.write('storage-files/lastseen.json', user.userid, Date.now()); 
+        if (user.named && toId(oldid) != toId(user)) Core.write('storage-files/dates.json', user.userid, Date.now()); 
         delete this.users[oldid];
         this.users[user.userid] = user;
         return user;
